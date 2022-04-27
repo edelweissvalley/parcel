@@ -1,0 +1,48 @@
+{
+  "name": "parcel",
+  "author": "Anton Majmitov",
+  "version": "1.0.0",
+  "description": "Стартовая сборка Parcel",
+  "scripts": {
+    "start": "parcel --no-cache src/index.html -p 3000",
+    "build": "parcel build src/index.html --no-cache --no-source-maps --public-url .",
+    "build-server": "parcel build src/index.html --no-cache --no-source-maps --public-url . && node server.js",
+    "eslint": "eslint --ext .ts,.tsx src",
+    "stylelint": "stylelint src/**/*.pcss",
+    "typescript": "tsc -p ./ --noEmit",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.pcss": [
+      "stylelint --config .stylelintrc.json"
+    ],
+    "*.{ts,tsx,js}": [
+      "npm run eslint",
+      "bash -c 'npm run typescript'"
+    ]
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.6.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "eslint": "^8.14.0",
+    "eslint-import-resolver-typescript": "^3.1.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-sonarjs": "^0.13.0",
+    "express": "^4.18.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.1",
+    "parcel": "^2.6.0",
+    "stylelint": "^14.8.5",
+    "stylelint-config-standard": "^26.0.0",
+    "typescript": "^4.7.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
+  "alias": {
+    "src": "./src"
+  }
+}
